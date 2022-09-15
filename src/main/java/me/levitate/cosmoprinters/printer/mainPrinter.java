@@ -65,7 +65,6 @@ public class mainPrinter {
     }
 
     public void run_printer() {
-        // this the rewrite
         for (Player player : Bukkit.getServer().getOnlinePlayers()) {
             int printer_amount = 0;
             Economy economy = this.plugin.getEconomy();
@@ -80,11 +79,11 @@ public class mainPrinter {
                 }
             }
 
-            int deposit_amount = 1000 * printer_amount;
+            int deposit_amount = this.plugin.getConfig().getInt("printer-money") * printer_amount;
 
             if (deposit_amount != 0) {
-                economy.depositPlayer(player, 1000 * printer_amount);
-                player.sendMessage(Utilities.translateColor("&2• &aYou have received $1,000 from your printer."));
+                economy.depositPlayer(player, deposit_amount);
+                player.sendMessage(Utilities.translateColor("&2• &aYou have received $" + deposit_amount + " from your printer."));
             }
         }
     }
