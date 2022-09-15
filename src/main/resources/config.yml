@@ -1,0 +1,29 @@
+# CosmoPrinters plugin, made by Levitate.
+
+# Name of the printer item
+item-name: "&c* &4Printer &c*"
+
+# Lore of the printer item
+item-lore:
+  - "&7test"
+
+# Amount of money earned from printer every x seconds
+# Default is 10000, I do recommend changing this depending on how your economy is though.
+printer-money: 10000
+
+# Amount of time in seconds to get money from printer by default.
+# Default is 30 minutes or 1800 seconds.
+printer-time: 10
+
+# Message received when the player is missing permissions
+no-permission: "&4• &cYou don't have permission to use this command."
+
+# Message received by the sender of a printer
+sent-message: "&2• &aYou have sent a printer."
+
+# Message received by the sender of a printer when there is an error while sending a printer.
+error-sending: "&4• &cFailed to send a printer, make sure the target player exists."
+
+# Message received by the person who was given the printer
+received-message: "&2• &aYou have received a printer."
+

@@ -1,0 +1,13 @@
+name: CosmoPrinters
+version: '${project.version}'
+main: me.levitate.cosmoprinters.CosmoPrinters
+api-version: 1.8.8
+authors: [ Levitate ]
+description: A plugin that allows your players to buy and use money printers, earning money, buying new printers and making more and more money.
+depend: [Vault, NBTAPI]
+
+commands:
+  printer:
+    usage: /<command>
+    description: Opens the printer menu.
+    aliases: [printers, cp, cosmoprinters]
