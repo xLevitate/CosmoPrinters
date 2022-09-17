@@ -60,6 +60,7 @@ public class mainPrinter {
 
         NBTItem nbti = new NBTItem(printer);
         nbti.setBoolean("isPrinter", true);
+        nbti.setInteger("moneyUpgrades", 0);
 
         return nbti.getItem();
     }

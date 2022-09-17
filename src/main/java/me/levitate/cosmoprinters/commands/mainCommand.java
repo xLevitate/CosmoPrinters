@@ -63,7 +63,25 @@ public class mainCommand implements CommandExecutor {
                 }
             }
             else if (args.length >= 1 && args[0].equalsIgnoreCase("upgrade")) {
-                return true;
+                if (sender.hasPermission("cosmoprinter.upgrade")) {
+                    Player player = (Player) sender;
+                    ItemStack item = player.getItemInHand();
+
+                    if (item != null && item.getType() != Material.AIR) {
+                        NBTItem nbti = new NBTItem(item);
+
+                        if (nbti.getBoolean("isPrinter")) {
+                            player.sendMessage("you are holding a printer");
+                        }
+                        else {
+                            player.sendMessage("you must be holding a printer");
+                            return true;
+                        }
+                    }
+                    else {
+                        player.sendMessage("you must be holding a printer");
+                    }
+                }
             }
         }
 

@@ -11,6 +11,22 @@ item-lore:
 # Default is 10000, I do recommend changing this depending on how your economy is though.
 printer-money: 10000
 
+# Amount of money you need to pay to upgrade printer
+# Default is 10000, I do recommend changing this depending on how your economy is though.
+upgrade-price: 10000
+
+# The multiplier of how much more money the player will earn per upgrade
+# Default is 1.5
+upgrade-earnings-increase: 1.5
+
+# How much the upgrade price multiplies per upgrade
+# Default is 1.5
+upgrade-price-multiplier: 1.5
+
+# Maximum amount of times the printer can be upgraded
+# Default is 10
+max-upgrades: 10
+
 # Amount of time in seconds to get money from printer by default.
 # Default is 30 minutes or 1800 seconds.
 printer-time: 10
@@ -26,4 +42,6 @@ error-sending: "&4• &cFailed to send a printer, make sure the target player ex
 
 # Message received by the person who was given the printer
 received-message: "&2• &aYou have received a printer."
+
+# Message received when running upgrade command but not holding a printer.
 
