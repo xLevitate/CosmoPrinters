@@ -53,8 +53,6 @@ public class mainPrinter {
 
         meta.setLore(lore);
         meta.setDisplayName(Utilities.translateColor(this.plugin.getConfig().getString("item-name")));
-        meta.addEnchant(Enchantment.DURABILITY, 1, true);
-        meta.addItemFlags(new ItemFlag[]{ItemFlag.HIDE_ENCHANTS});
         meta.spigot().setUnbreakable(true);
         printer.setItemMeta(meta);
 
@@ -101,12 +99,14 @@ public class mainPrinter {
                 }
 
                 if (deposit_amount != 0) {
-                    economy.depositPlayer(player, deposit_amount);
                     total += (int) deposit_amount;
                 }
             }
 
-            player.sendMessage(Utilities.translateColor("&2• &aYou have received $" + total + " from your printer."));
+            if (total != 0) {
+                economy.depositPlayer(player, total);
+                player.sendMessage(Utilities.translateColor("&2• &aYou have received $" + total + " from your printer."));
+            }
         }
     }
 }
