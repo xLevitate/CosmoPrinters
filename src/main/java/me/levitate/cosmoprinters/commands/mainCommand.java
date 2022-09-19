@@ -71,7 +71,9 @@ public class mainCommand implements CommandExecutor {
                         NBTItem nbti = new NBTItem(item);
 
                         if (nbti.getBoolean("isPrinter")) {
-                            player.sendMessage("you are holding a printer");
+                            // currently broken, gotta fix next time I work on this
+                            nbti.setInteger("earningUpgrades", 2);
+                            player.sendMessage("upgraded printer to " + nbti.getInteger("earningUpgrades"));
                         }
                         else {
                             player.sendMessage("you must be holding a printer");

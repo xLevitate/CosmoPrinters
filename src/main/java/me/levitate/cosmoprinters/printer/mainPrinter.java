@@ -60,32 +60,53 @@ public class mainPrinter {
 
         NBTItem nbti = new NBTItem(printer);
         nbti.setBoolean("isPrinter", true);
-        nbti.setInteger("moneyUpgrades", 0);
+        nbti.setInteger("earningUpgrades", 2); // set to 2 for testing, change this to 0 later
 
         return nbti.getItem();
     }
 
+    public List<ItemStack> get_printers(Player plr) {
+        List<ItemStack> printers = new ArrayList<ItemStack>();
+
+        for (ItemStack item : plr.getInventory().getContents()) {
+            if (item != null) {
+                NBTItem nbti = new NBTItem(item);
+
+                if (nbti.getBoolean("isPrinter")) {
+                    printers.add(item);
+                }
+            }
+        }
+
+        return printers;
+    }
+
     public void run_printer() {
         for (Player player : Bukkit.getServer().getOnlinePlayers()) {
-            int printer_amount = 0;
+            List<ItemStack> printers = get_printers(player);
             Economy economy = this.plugin.getEconomy();
 
-            for (ItemStack item : player.getInventory().getContents()) {
-                if (item != null) {
-                    NBTItem nbti = new NBTItem(item);
+            int total = 0;
 
-                    if (nbti.getBoolean("isPrinter")) {
-                        printer_amount += 1;
-                    }
+            for (ItemStack printer : printers) {
+                NBTItem nbti = new NBTItem(printer);
+
+                float deposit_amount = 0;
+
+                if (nbti.getInteger("earningUpgrades") != 0) {
+                    deposit_amount = this.plugin.getConfig().getInt("printer-money") * (nbti.getInteger("earningUpgrades") * (float)this.plugin.getConfig().getDouble("upgrade-earnings-increase"));
+                }
+                else {
+                    deposit_amount = this.plugin.getConfig().getInt("printer-money");
+                }
+
+                if (deposit_amount != 0) {
+                    economy.depositPlayer(player, deposit_amount);
+                    total += (int) deposit_amount;
                 }
             }
 
-            int deposit_amount = this.plugin.getConfig().getInt("printer-money") * printer_amount;
-
-            if (deposit_amount != 0) {
-                economy.depositPlayer(player, deposit_amount);
-                player.sendMessage(Utilities.translateColor("&2• &aYou have received $" + deposit_amount + " from your printer."));
-            }
+            player.sendMessage(Utilities.translateColor("&2• &aYou have received $" + total + " from your printer."));
         }
     }
 }
