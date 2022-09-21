@@ -64,26 +64,6 @@ public class Utilities
         return getNumber(formatNumber(x));
     }
 
-    public static Double changeBalance(sqlite db, UUID uuid, Double value) {
-        String result = db.get_balance(uuid);
-
-        if (result.equals("0.000") || result == null) {
-            db.add_row_to_currency(uuid, value);
-            return value;
-        }
-        else {
-            if(isNumeric(result)) {
-                Double oldValue = getNumber(result);
-                db.set_balance(uuid, roundToHundredths(oldValue + value));
-                return (oldValue + value);
-            }
-            else {
-                db.set_balance(uuid, roundToHundredths(value));
-                return value;
-            }
-        }
-    }
-
     public static int secondsToTicks(int seconds) {
         return seconds * 20;
     }

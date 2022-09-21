@@ -1,11 +1,11 @@
 # CosmoPrinters plugin, made by Levitate.
 
 # Name of the printer item
-item-name: "&c* &4Printer &c*"
+item-name: "&3&l[!] &b&lPrinter &3&l[!]"
 
 # Lore of the printer item
 item-lore:
-  - "&7test"
+  - "&7Leave this in your inventory to earn passive income"
 
 # Amount of money earned from printer every x seconds
 # Default is 10000, I do recommend changing this depending on how your economy is though.
@@ -20,8 +20,8 @@ upgrade-price: 10000
 upgrade-earnings-increase: 1.5
 
 # How much the upgrade price multiplies per upgrade
-# Default is 1.5
-upgrade-price-multiplier: 1.5
+# Default is 2
+upgrade-price-multiplier: 2
 
 # Maximum amount of times the printer can be upgraded
 # Default is 10

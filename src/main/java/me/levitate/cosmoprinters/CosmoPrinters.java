@@ -11,10 +11,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-// make printers a physical item that players purchase, configurable the max amount of printers they can purchase along with the price, etc.
-// implement NBTAPI and use it to handle upgrades, etc.
-// don't know how I'm going to make them earn their money, will look through the spigot api and see if there are any events I can use for this.
-// doing withdrawals shouldn't be hard to do using NBTAPI and vault of course.
+// make it so they dont lose the printer if they die (gonna have to do it after release, since I'm gonna have to learn about persistent storage to properly do it)
+// finish upgrades command
+// finish the config
 
 public final class CosmoPrinters extends JavaPlugin {
     private printerEvent printerManager;

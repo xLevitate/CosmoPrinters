@@ -64,6 +64,7 @@ public class mainCommand implements CommandExecutor {
             }
             else if (args.length >= 1 && args[0].equalsIgnoreCase("upgrade")) {
                 if (sender.hasPermission("cosmoprinter.upgrade")) {
+                    int upgrades = 0;
                     Player player = (Player) sender;
                     ItemStack item = player.getItemInHand();
 
@@ -71,9 +72,11 @@ public class mainCommand implements CommandExecutor {
                         NBTItem nbti = new NBTItem(item);
 
                         if (nbti.getBoolean("isPrinter")) {
-                            // currently broken, gotta fix next time I work on this
-                            nbti.setInteger("earningUpgrades", 2);
-                            player.sendMessage("upgraded printer to " + nbti.getInteger("earningUpgrades"));
+                            nbti.setInteger("earningUpgrades", nbti.getInteger("earningUpgrades") + 1);
+                            player.setItemInHand(nbti.getItem());
+                            player.sendMessage("upgraded to " + nbti.getInteger("earningUpgrades"));
+
+                            return true;
                         }
                         else {
                             player.sendMessage("you must be holding a printer");

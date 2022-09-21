@@ -58,7 +58,7 @@ public class mainPrinter {
 
         NBTItem nbti = new NBTItem(printer);
         nbti.setBoolean("isPrinter", true);
-        nbti.setInteger("earningUpgrades", 2); // set to 2 for testing, change this to 0 later
+        nbti.setInteger("earningUpgrades", 0);
 
         return nbti.getItem();
     }
@@ -99,6 +99,7 @@ public class mainPrinter {
                 }
 
                 if (deposit_amount != 0) {
+                    player.sendMessage(String.valueOf(nbti.getDouble("totalEarnings")));
                     total += (int) deposit_amount;
                 }
             }
