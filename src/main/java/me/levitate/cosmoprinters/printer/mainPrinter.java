@@ -9,6 +9,7 @@ import me.levitate.cosmoprinters.utilities.Utilities;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
@@ -99,13 +100,13 @@ public class mainPrinter {
                 }
 
                 if (deposit_amount != 0) {
-                    player.sendMessage(String.valueOf(nbti.getDouble("totalEarnings")));
                     total += (int) deposit_amount;
                 }
             }
 
             if (total != 0) {
                 economy.depositPlayer(player, total);
+                player.playSound(player.getLocation(), Sound.LEVEL_UP, 0.65F, 2);
                 player.sendMessage(Utilities.translateColor("&2• &aYou have received $" + total + " from your printer."));
             }
         }

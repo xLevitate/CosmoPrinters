@@ -12,6 +12,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 // make it so they dont lose the printer if they die (gonna have to do it after release, since I'm gonna have to learn about persistent storage to properly do it)
+// add sound effects
 // finish upgrades command
 // finish the config
 

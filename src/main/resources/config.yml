@@ -20,16 +20,16 @@ upgrade-price: 10000
 upgrade-earnings-increase: 1.5
 
 # How much the upgrade price multiplies per upgrade
-# Default is 2
-upgrade-price-multiplier: 2
+# Default is 3
+upgrade-price-multiplier: 3
 
 # Maximum amount of times the printer can be upgraded
-# Default is 10
-max-upgrades: 10
+# Default is 15
+max-upgrades: 15
 
 # Amount of time in seconds to get money from printer by default.
-# Default is 30 minutes or 1800 seconds.
-printer-time: 10
+# Default is 3600 seconds = 1 hour.
+printer-time: 3600
 
 # Message received when the player is missing permissions
 no-permission: "&4• &cYou don't have permission to use this command."
