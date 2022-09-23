@@ -43,5 +43,14 @@ error-sending: "&4• &cFailed to send a printer, make sure the target player ex
 # Message received by the person who was given the printer
 received-message: "&2• &aYou have received a printer."
 
-# Message received when running upgrade command but not holding a printer.
+# Message received when running upgrade command but not holding a printer
+not-holding-printer: "&4• &cYou must be holding a printer to use this command."
 
+# Message received when trying to upgrade printer when it's already at maximum upgrades
+already-max-upgrades: "&4• &cYou are already at maximum upgrades."
+
+# Message received when player doesn't have enough money to upgrade printer.
+not-enough-money: "&4• &cYou do not have enough money to upgrade this printer."
+
+# Message received when upgrading printer.
+printer-upgraded: "&2• &aYou have upgraded your printer to "

@@ -5,24 +5,13 @@ import me.levitate.cosmoprinters.CosmoPrinters;
 import me.levitate.cosmoprinters.printer.mainPrinter;
 import me.levitate.cosmoprinters.utilities.Utilities;
 import net.milkbowl.vault.economy.Economy;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.UUID;
 
 public class mainCommand implements CommandExecutor {
     private final CosmoPrinters plugin;
@@ -34,8 +23,6 @@ public class mainCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("printer")) {
-            String currencyName = this.plugin.getConfig().getString("name-of-currency");
-
             if (args.length == 0) {
                 sender.sendMessage(Utilities.translateColor("&f&l[!] &b&lPrinter Commands"));
                 sender.sendMessage(Utilities.translateColor("&8• &f/printer &8give <player>"));
@@ -78,7 +65,14 @@ public class mainCommand implements CommandExecutor {
 
                     if (item != null && item.getType() != Material.AIR) {
                         NBTItem nbti = new NBTItem(item);
-                        double upgrade_price = this.plugin.getConfig().getInt("upgrade-price") * nbti.getInteger("earningUpgrades") * this.plugin.getConfig().getInt("upgrade-price-multiplier");
+
+                        double upgrade_price;
+                        if (nbti.getInteger("earningUpgrades") == 0) {
+                            upgrade_price = this.plugin.getConfig().getInt("upgrade-price");
+                        }
+                        else {
+                            upgrade_price = this.plugin.getConfig().getInt("upgrade-price") * nbti.getInteger("earningUpgrades") * this.plugin.getConfig().getInt("upgrade-price-multiplier");
+                        }
 
                         if (nbti.getBoolean("isPrinter")) {
                             if (economy.getBalance(player) >= upgrade_price) {
@@ -86,30 +80,30 @@ public class mainCommand implements CommandExecutor {
                                     economy.withdrawPlayer(player, upgrade_price);
                                     nbti.setInteger("earningUpgrades", nbti.getInteger("earningUpgrades") + 1);
                                     player.setItemInHand(nbti.getItem());
-                                    player.sendMessage("upgraded to " + nbti.getInteger("earningUpgrades"));
+                                    player.sendMessage(Utilities.translateColor(this.plugin.getConfig().getString("already-max-upgrades")) + nbti.getInteger("earningUpgrades"));
                                     player.playSound(player.getLocation(), Sound.LEVEL_UP, 0.65F, 2);
 
                                     return true;
                                 }
                                 else {
                                     player.playSound(player.getLocation(), Sound.ANVIL_LAND, 0.6F, 2);
-                                    player.sendMessage("you are already at the maximum amount of printer upgrades");
+                                    player.sendMessage(Utilities.translateColor(this.plugin.getConfig().getString("already-max-upgrades")));
                                 }
                             }
                             else {
                                 player.playSound(player.getLocation(), Sound.ANVIL_LAND, 0.6F, 2);
-                                player.sendMessage("you do not have enough money to upgrade your printer");
+                                player.sendMessage(Utilities.translateColor(this.plugin.getConfig().getString("not-enough-money")));
                             }
                         }
                         else {
                             player.playSound(player.getLocation(), Sound.ANVIL_LAND, 0.6F, 2);
-                            player.sendMessage("you must be holding a printer");
+                            player.sendMessage(Utilities.translateColor(this.plugin.getConfig().getString("not-holding-printer")));
                             return true;
                         }
                     }
                     else {
                         player.playSound(player.getLocation(), Sound.ANVIL_LAND, 0.6F, 2);
-                        player.sendMessage("you must be holding a printer");
+                        player.sendMessage(Utilities.translateColor(this.plugin.getConfig().getString("not-holding-printer")));
                     }
                 }
             }
