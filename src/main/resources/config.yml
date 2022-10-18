@@ -6,6 +6,7 @@ item-name: "&3&l[!] &b&lPrinter &3&l[!]"
 # Lore of the printer item
 item-lore:
   - "&7Leave this in your inventory to earn passive income"
+  - ""
 
 # Amount of money earned from printer every x seconds
 # Default is 10000, I do recommend changing this depending on how your economy is though.

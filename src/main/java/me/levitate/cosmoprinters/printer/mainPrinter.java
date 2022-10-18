@@ -5,6 +5,7 @@ import com.mojang.authlib.properties.Property;
 import de.tr7zw.nbtapi.NBTItem;
 import me.levitate.cosmoprinters.CosmoPrinters;
 import me.levitate.cosmoprinters.commands.mainCommand;
+import me.levitate.cosmoprinters.utilities.Sounds;
 import me.levitate.cosmoprinters.utilities.Utilities;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
@@ -106,7 +107,7 @@ public class mainPrinter {
 
             if (total != 0) {
                 economy.depositPlayer(player, total);
-                player.playSound(player.getLocation(), Sound.LEVEL_UP, 0.65F, 2);
+                Sounds.LEVEL_UP.play(player, 0.65F, 2);
                 player.sendMessage(Utilities.translateColor("&2• &aYou have received $" + total + " from your printer."));
             }
         }

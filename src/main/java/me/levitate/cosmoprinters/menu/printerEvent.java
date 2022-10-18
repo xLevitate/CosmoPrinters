@@ -1,6 +1,7 @@
 package me.levitate.cosmoprinters.menu;
 
 import me.levitate.cosmoprinters.CosmoPrinters;
+import me.levitate.cosmoprinters.utilities.Sounds;
 import me.levitate.cosmoprinters.utilities.Utilities;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
@@ -116,40 +117,40 @@ public class printerEvent implements Listener
                 if (printers >= getMaxPrinters())
                 {
                     player.sendMessage(getStatAlreadyMaxed());
-                    player.playSound(player.getLocation(), Sound.ANVIL_LAND, 0.6F, 2);
+                    Sounds.ANVIL_LAND.play(player, 0.6F, 2);
                     return;
                 }
 
                 if (playerMoney < price)
                 {
                     player.sendMessage(getNotEnoughMoney());
-                    player.playSound(player.getLocation(), Sound.ANVIL_LAND, 0.6F, 2);
+                    Sounds.ANVIL_LAND.play(player, 0.6F, 2);
                     return;
                 }
 
-                player.playSound(player.getLocation(), Sound.LEVEL_UP, 0.65F, 2);
+                Sounds.LEVEL_UP.play(player, 0.65F, 2);
             }
             else if (item.getItemMeta().getDisplayName().equals(getSpeedTitle()))
             {
                 if (speed >= getMaxSpeed())
                 {
                     player.sendMessage(getStatAlreadyMaxed());
-                    player.playSound(player.getLocation(), Sound.ANVIL_LAND, 0.6F, 2);
+                    Sounds.ANVIL_LAND.play(player, 0.6F, 2);
                     return;
                 }
 
                 if (playerMoney < price)
                 {
                     player.sendMessage(getNotEnoughMoney());
-                    player.playSound(player.getLocation(), Sound.ANVIL_LAND, 0.6F, 2);
+                    Sounds.ANVIL_LAND.play(player, 0.6F, 2);
                     return;
                 }
 
-                player.playSound(player.getLocation(), Sound.LEVEL_UP, 0.65F, 2);
+                Sounds.LEVEL_UP.play(player, 0.65F, 2);
             }
             else if (item.getItemMeta().getDisplayName().equals(getWithdrawTitle()))
             {
-                player.playSound(player.getLocation(), Sound.LEVEL_UP, 0.65F, 2);
+                Sounds.LEVEL_UP.play(player, 0.65F, 2);
             }
         }
     }

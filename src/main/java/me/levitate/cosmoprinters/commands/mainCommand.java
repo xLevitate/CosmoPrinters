@@ -3,6 +3,7 @@ package me.levitate.cosmoprinters.commands;
 import de.tr7zw.nbtapi.NBTItem;
 import me.levitate.cosmoprinters.CosmoPrinters;
 import me.levitate.cosmoprinters.printer.mainPrinter;
+import me.levitate.cosmoprinters.utilities.Sounds;
 import me.levitate.cosmoprinters.utilities.Utilities;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Material;
@@ -39,21 +40,21 @@ public class mainCommand implements CommandExecutor {
                     Player target = this.plugin.getServer().getPlayer(args[1]);
 
                     sender.sendMessage(Utilities.translateColor(this.plugin.getConfig().getString("sent-message")));
-                    player.playSound(player.getLocation(), Sound.LEVEL_UP, 0.65F, 2);
+                    Sounds.LEVEL_UP.play(player, 0.65F, 2);
 
                     if (target != null) {
                         mainPrinter printer = new mainPrinter(plugin);
                         target.getInventory().addItem(new ItemStack[]{printer.getPrinter()});
                         target.sendMessage(Utilities.translateColor(this.plugin.getConfig().getString("received-message")));
-                        target.playSound(target.getLocation(), Sound.LEVEL_UP, 0.65F, 2);
+                        Sounds.LEVEL_UP.play(player, 0.65F, 2);
                     }
                     else {
-                        player.playSound(player.getLocation(), Sound.ANVIL_LAND, 0.6F, 2);
+                        Sounds.ANVIL_LAND.play(player, 0.6F, 2);
                         sender.sendMessage(Utilities.translateColor(this.plugin.getConfig().getString("error-sending")));
                     }
                 }
                 else {
-                    player.playSound(player.getLocation(), Sound.ANVIL_LAND, 0.6F, 2);
+                    Sounds.ANVIL_LAND.play(player, 0.6F, 2);
                     sender.sendMessage(Utilities.translateColor(this.plugin.getConfig().getString("no-permission")));
                 }
             }
@@ -81,28 +82,28 @@ public class mainCommand implements CommandExecutor {
                                     nbti.setInteger("earningUpgrades", nbti.getInteger("earningUpgrades") + 1);
                                     player.setItemInHand(nbti.getItem());
                                     player.sendMessage(Utilities.translateColor(this.plugin.getConfig().getString("already-max-upgrades")) + nbti.getInteger("earningUpgrades"));
-                                    player.playSound(player.getLocation(), Sound.LEVEL_UP, 0.65F, 2);
+                                    Sounds.LEVEL_UP.play(player, 0.65F, 2);
 
                                     return true;
                                 }
                                 else {
-                                    player.playSound(player.getLocation(), Sound.ANVIL_LAND, 0.6F, 2);
+                                    Sounds.ANVIL_LAND.play(player, 0.6F, 2);
                                     player.sendMessage(Utilities.translateColor(this.plugin.getConfig().getString("already-max-upgrades")));
                                 }
                             }
                             else {
-                                player.playSound(player.getLocation(), Sound.ANVIL_LAND, 0.6F, 2);
+                                Sounds.ANVIL_LAND.play(player, 0.6F, 2);
                                 player.sendMessage(Utilities.translateColor(this.plugin.getConfig().getString("not-enough-money")));
                             }
                         }
                         else {
-                            player.playSound(player.getLocation(), Sound.ANVIL_LAND, 0.6F, 2);
+                            Sounds.ANVIL_LAND.play(player, 0.6F, 2);
                             player.sendMessage(Utilities.translateColor(this.plugin.getConfig().getString("not-holding-printer")));
                             return true;
                         }
                     }
                     else {
-                        player.playSound(player.getLocation(), Sound.ANVIL_LAND, 0.6F, 2);
+                        Sounds.ANVIL_LAND.play(player, 0.6F, 2);
                         player.sendMessage(Utilities.translateColor(this.plugin.getConfig().getString("not-holding-printer")));
                     }
                 }
